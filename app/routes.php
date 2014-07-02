@@ -15,3 +15,29 @@ Route::get('/', function()
 {
 	return View::make('hello');
 });
+
+Route::get('debug', function()
+{
+    return 'debug';
+});
+
+Route::get('posts', function()
+{
+    $posts = Post::all();
+
+    $result = '';
+
+    foreach($posts as $post)
+    {
+        $result .= $post->id.': '.$post->title.'<br>';
+    }
+
+    return $result;
+});
+
+Route::get('post/{id}', function($id)
+{
+    $post = Post::find($id);
+
+    return $post->title;
+});
