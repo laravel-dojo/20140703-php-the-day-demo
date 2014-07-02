@@ -22,5 +22,5 @@ Route::get('post/{id}', function($id)
 {
     $post = Post::find($id);
 
-    return $post->title;
+    return View::make('show')->with('post', $post);
 });
