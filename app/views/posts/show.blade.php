@@ -7,13 +7,13 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>My Blog</title>
+    <title>Blog Post Template for Bootstrap 3</title>
 
     <!-- Bootstrap core CSS -->
     <link href="{{{ asset('css/bootstrap.css') }}}" rel="stylesheet">
 
     <!-- Add custom CSS here -->
-    <link href="{{{ asset('css/blog-home.css') }}}" rel="stylesheet">
+    <link href="{{{ asset('css/blog-post.css') }}}" rel="stylesheet">
 
 </head>
 
@@ -28,7 +28,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.php">Start Bootstrap</a>
+                <a class="navbar-brand" href="{{{ route('posts.index') }}}">My Blog</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -52,32 +52,51 @@
         <div class="row">
             <div class="col-lg-8">
 
-                {{-- blog entry --}}
-                @if ($posts->count())
-                @foreach($posts as $post)
-                <h1><a href="post/{{{ $post->id }}}">{{{ $post->title }}}</a>
-                </h1>
+                <!-- the actual blog post: title/author/date/content -->
+                <h1>{{{ $post->title }}}</h1>
                 <p class="lead">by <a href="index.php">Start Bootstrap</a>
                 </p>
                 <hr>
                 <p>
-                    <span class="glyphicon glyphicon-time"></span> Posted on {{{ $post->created_at->toDateTimeString() }}}
+                    <span class="glyphicon glyphicon-time"></span> Posted on {{{ $post->created_at->toDateTimeString() }}}</p>
+                <hr>
+                <p class="lead">
+                    {{ $post->content }}
                 </p>
-                <hr>
-                <p>{{ $post->content }}</p>
-                <a class="btn btn-primary" href="post/{{{ $post->id }}}">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
-
-                <hr>
-                @endforeach
-                @endif
-
-                <!-- pager -->
-                <ul class="pager">
-                    <li class="previous"><a href="#">&larr; Older</a>
+                <ul>
+                    <li><a href="http://spaceipsum.com/">Space Ipsum</a>
                     </li>
-                    <li class="next"><a href="#">Newer &rarr;</a>
+                    <li><a href="http://cupcakeipsum.com/">Cupcake Ipsum</a>
+                    </li>
+                    <li><a href="http://tunaipsum.com/">Tuna Ipsum</a>
                     </li>
                 </ul>
+
+                <hr>
+
+                <!-- the comment box -->
+                <div class="well">
+                    <h4>Leave a Comment:</h4>
+                    <form role="form">
+                        <div class="form-group">
+                            <textarea class="form-control" rows="3"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+
+                <hr>
+
+                <!-- the comments -->
+                <h3>Start Bootstrap
+                    <small>9:41 PM on August 24, 2013</small>
+                </h3>
+                <p>This has to be the worst blog post I have ever read. It simply makes no sense. You start off by talking about space or something, then you randomly start babbling about cupcakes, and you end off with random fish names.</p>
+
+                <h3>Start Bootstrap
+                    <small>9:47 PM on August 24, 2013</small>
+                </h3>
+                <p>Don't listen to this guy, any blog with the categories 'dinosaurs, spaceships, fried foods, wild animals, alien abductions, business casual, robots, and fireworks' has true potential.</p>
 
             </div>
 

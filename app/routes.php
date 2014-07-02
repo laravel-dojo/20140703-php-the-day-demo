@@ -11,16 +11,5 @@
 |
 */
 
-Route::get('/', function()
-{
-    $posts = Post::all();
-
-	return View::make('home')->with('posts', $posts);
-});
-
-Route::get('post/{id}', function($id)
-{
-    $post = Post::find($id);
-
-    return View::make('show')->with('post', $post);
-});
+Route::get('/'        , ['as' => 'posts.index', 'uses' => 'HomeController@index']);
+Route::get('post/{id}', ['as' => 'posts.show' , 'uses' => 'HomeController@show']);
