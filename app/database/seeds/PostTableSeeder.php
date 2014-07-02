@@ -1,16 +1,20 @@
 <?php
 
+use Faker\Factory as Faker;
+
 class PostTableSeeder extends Seeder {
 
     public function run()
     {
         DB::table('posts')->truncate();
 
-        foreach(range(1, 10) as $value)
+        $faker = Faker::create();
+
+        foreach(range(1, 10) as $index => $value)
         {
             Post::create([
-                'title'   => 'My Post Title' . $value,
-                'content' => 'My Post Content',
+                'title' => $faker->sentence(),
+                'content' => $faker->text(400),
             ]);
         }
     }
